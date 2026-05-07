@@ -1,0 +1,168 @@
+import { MockEndpoint } from '../types'
+
+export const sampleEndpoints: MockEndpoint[] = [
+  {
+    id: 'sample-001',
+    name: 'Get User Profile',
+    method: 'GET',
+    path: '/api/users/1',
+    statusCode: 200,
+    delayMs: 300,
+    description: 'Returns a single user profile by ID.',
+    responseBody: JSON.stringify(
+      { id: 1, name: 'Alex Johnson', email: 'alex@example.com', role: 'student' },
+      null,
+      2
+    ),
+    tags: ['user', 'profile'],
+    createdAt: '2024-01-10T09:00:00.000Z',
+    updatedAt: '2024-01-10T09:00:00.000Z',
+  },
+  {
+    id: 'sample-002',
+    name: 'List All Products',
+    method: 'GET',
+    path: '/api/products',
+    statusCode: 200,
+    delayMs: 500,
+    description: 'Returns a paginated list of products.',
+    responseBody: JSON.stringify(
+      {
+        data: [
+          { id: 101, name: 'Wireless Headphones', price: 79.99, inStock: true },
+          { id: 102, name: 'Mechanical Keyboard', price: 129.99, inStock: false },
+        ],
+        total: 2,
+        page: 1,
+        perPage: 20,
+      },
+      null,
+      2
+    ),
+    tags: ['product', 'list'],
+    createdAt: '2024-01-11T10:00:00.000Z',
+    updatedAt: '2024-01-11T10:00:00.000Z',
+  },
+  {
+    id: 'sample-003',
+    name: 'Create Order',
+    method: 'POST',
+    path: '/api/orders',
+    statusCode: 201,
+    delayMs: 700,
+    description: 'Creates a new order and returns the created resource.',
+    responseBody: JSON.stringify(
+      {
+        id: 'ord-9f2a',
+        userId: 1,
+        items: [{ productId: 101, quantity: 2 }],
+        total: 159.98,
+        status: 'pending',
+        createdAt: '2024-01-12T11:30:00.000Z',
+      },
+      null,
+      2
+    ),
+    tags: ['order', 'create'],
+    createdAt: '2024-01-12T11:00:00.000Z',
+    updatedAt: '2024-01-12T11:00:00.000Z',
+  },
+  {
+    id: 'sample-004',
+    name: 'Update User Settings',
+    method: 'PUT',
+    path: '/api/users/1/settings',
+    statusCode: 200,
+    delayMs: 400,
+    description: 'Replaces user settings with the provided payload.',
+    responseBody: JSON.stringify(
+      { userId: 1, theme: 'dark', notifications: true, language: 'en' },
+      null,
+      2
+    ),
+    tags: ['user', 'settings'],
+    createdAt: '2024-01-13T08:00:00.000Z',
+    updatedAt: '2024-01-13T08:00:00.000Z',
+  },
+  {
+    id: 'sample-005',
+    name: 'Patch Product Stock',
+    method: 'PATCH',
+    path: '/api/products/101',
+    statusCode: 200,
+    delayMs: 250,
+    description: 'Partially updates a product resource (e.g. toggle stock status).',
+    responseBody: JSON.stringify(
+      { id: 101, inStock: true, updatedAt: '2024-01-14T14:00:00.000Z' },
+      null,
+      2
+    ),
+    tags: ['product', 'stock'],
+    createdAt: '2024-01-14T14:00:00.000Z',
+    updatedAt: '2024-01-14T14:00:00.000Z',
+  },
+  {
+    id: 'sample-006',
+    name: 'Delete Session',
+    method: 'DELETE',
+    path: '/api/sessions/current',
+    statusCode: 200,
+    delayMs: 150,
+    description: 'Logs out the current user by deleting the active session.',
+    responseBody: JSON.stringify({ message: 'Session terminated successfully.' }, null, 2),
+    tags: ['auth', 'session'],
+    createdAt: '2024-01-15T16:00:00.000Z',
+    updatedAt: '2024-01-15T16:00:00.000Z',
+  },
+  {
+    id: 'sample-007',
+    name: 'Unauthorized Access',
+    method: 'GET',
+    path: '/api/admin/stats',
+    statusCode: 401,
+    delayMs: 100,
+    description: 'Returns 401 when a user tries to access a protected resource without auth.',
+    responseBody: JSON.stringify(
+      { error: 'Unauthorized', message: 'You must be logged in to access this resource.' },
+      null,
+      2
+    ),
+    tags: ['auth', 'error'],
+    createdAt: '2024-01-16T09:00:00.000Z',
+    updatedAt: '2024-01-16T09:00:00.000Z',
+  },
+  {
+    id: 'sample-008',
+    name: 'Resource Not Found',
+    method: 'GET',
+    path: '/api/products/999',
+    statusCode: 404,
+    delayMs: 200,
+    description: 'Returns 404 when the requested product does not exist.',
+    responseBody: JSON.stringify(
+      { error: 'Not Found', message: 'Product with id 999 does not exist.' },
+      null,
+      2
+    ),
+    tags: ['product', 'error'],
+    createdAt: '2024-01-17T10:00:00.000Z',
+    updatedAt: '2024-01-17T10:00:00.000Z',
+  },
+  {
+    id: 'sample-009',
+    name: 'Server Error',
+    method: 'POST',
+    path: '/api/reports/generate',
+    statusCode: 500,
+    delayMs: 1200,
+    description: 'Simulates an internal server error during report generation.',
+    responseBody: JSON.stringify(
+      { error: 'Internal Server Error', message: 'An unexpected error occurred. Please try again later.' },
+      null,
+      2
+    ),
+    tags: ['report', 'error'],
+    createdAt: '2024-01-18T15:00:00.000Z',
+    updatedAt: '2024-01-18T15:00:00.000Z',
+  },
+]
